@@ -1,1 +1,2 @@
-# Blog-Generator
+# AI Blog-Generator
+View master.
