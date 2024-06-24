@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./static/css/output.css" rel="stylesheet">
+  <title>AI Content Generator</title>
+</head>
+<body>
+    <head>
+      </head>
+      <body>
+        <nav class="bg-black text-white py-4 w-full">
+            <div class = "container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <div class="text-2xl flex-shrink-0 font-bold px-6">AI Blog Generator</div>
+                        <div class="lg:hidden">
+                        <button id="menuButton" class="lg:hidden focus:outline-none  text-white">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        </div>
+                        <div id="menuItems2" class="hidden lg:flex items-center justify-items-center flex-row pb-1 pt-2 px-6 space-y-0 lg:space-x-8">
+                            <a href="#" class="hover:text-gray-300">Home</a>
+                            <a href="#" class="hover:text-gray-300">About</a>
+                            <a href="#" class="hover:text-gray-300">Services</a>
+                            <a href="#" class="hover:text-gray-300">Contact</a>
+                        </div> 
+                    </div>
+                <div id="menuItems" class="hidden items-center justify-items-center flex-col pb-1 pt-2 space-y-2">
+                <a href="#" class="hover:text-gray-300">Home</a>
+                <a href="#" class="hover:text-gray-300">About</a>
+                <a href="#" class="hover:text-gray-300">Services</a>
+                <a href="#" class="hover:text-gray-300">Contact</a>
+                </div>
+            </div> 
+        </nav>
+      
+        <div class="container mx-auto p-4 md:px-0 w:full">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-center text-black my-8">AI Blog Generator</h1>
+            <label for="myTextArea" class="lg:mx-10 block text-gray-700 text-sm font-bold  = mb-2">Title:</label>
+
+            <textarea id="myTextArea" placeholder = "Enter the title of your blog" class="focus:border-black focus:border-3 w-full lg:w-11/12 lg:mx-10 border-2 border-gray-800 rounded p-2 text-gray-700 leading-tight placeholder:text-gray-700 " rows="4"></textarea>
+          
+            <button id = "submitBtn" type="button" class="lg:mx-11 mt-4 bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onclick="populate()">Submit</button>
+          
+            <div id="content" class="lg:mx-10 text-gray-700 w-full lg:w-11/12 mt-4 p-4 border-2 appearance rounded bg-gray-100">Your content will appear here</div>
+          </div>
+          
+          <script>
+            async function populate() {
+              var myTextArea = document.getElementById('myTextArea');
+              let prompt = myTextArea.value;
+              let response = await fetch('/generate', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({prompt: prompt})
+              });
+              content.innerHTML = await(response.text())
+              console.log(response)
+            }
+
+            var menuItems = document.getElementById('menuItems');
+            var menuButton = document.getElementById('menuButton');
+             menuItems.style.display = "none";
+            // if size of window becomes large then hide menuItems
+            window.addEventListener('resize', function() {
+              if (window.innerWidth > 1024) {
+                menuItems.style.display = "none";
+              }
+            });
+            document.getElementById('menuButton').addEventListener('click', function() {
+             
+              if (menuItems.style.display === "none") {
+                menuItems.style.display = "flex";
+              } else {
+                menuItems.style.display = "none";
+              }
+            });
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.addEventListener('click', () => {
+                populate();
+            });
+            
+
+        </script>
+        <!-- ... -->
+      </body>
+</html>
