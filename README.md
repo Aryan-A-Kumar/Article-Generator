@@ -1,5 +1,5 @@
 # Article Generator using GenAI
-This project is a web application built using Flask with TailwindCSS that generates an interesting article when user provides a title. The generative component is achieved via systematic calls to ChatGPT 3.5 using LangChain and OpenAI API. Users can enter a suitable title and click on the submit button to see an interesting article about it.
+This project is a web application built using Flask with Tailwind CSS that generates an interesting article when user provides a title. The generative component is achieved via systematic calls to ChatGPT 3.5 using LangChain and OpenAI API. Users can enter a suitable title and click on the submit button to see an interesting article about it.
 
 ## How to Use
 
@@ -21,7 +21,7 @@ This project is a web application built using Flask with TailwindCSS that genera
 
 - LangChain
 - Flask
-- TailwindCSS
+- Tailwind CSS
 - JavaScript
 - HTML
 
